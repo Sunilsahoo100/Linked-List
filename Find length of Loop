@@ -1,0 +1,30 @@
+//https://practice.geeksforgeeks.org/problems/find-length-of-loop/1/#
+
+int countNodesinLoop(struct Node *head)
+{
+    // Code here
+    struct Node *ptr,*temp;
+    unordered_set<Node*> s;
+    while(head!=NULL){
+        if(s.find(head)!=s.end()){
+        ptr=head;
+        temp=ptr;
+        break;
+        }
+        s.insert(head);
+        head=head->next;
+    }
+    if(temp!=ptr)
+    return 0;
+    else{
+    int ct=1;
+    
+    ptr=ptr->next;
+    while(ptr!=temp){
+        
+        ptr=ptr->next;
+        ct++;
+    }
+    return ct;
+    }
+}
